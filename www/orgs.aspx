@@ -50,7 +50,9 @@ void Page_Load(Object sender, EventArgs e)
 			when og_priority_field_permission_level = 0 then 'None'
 			when og_priority_field_permission_level = 1 then 'Read Only'
 			else 'Add/Edit' end [priority<br>permission<br>level],
-		isnull(og_domain,'')[domain]
+		isnull(og_domain,'')[domain],
+        isnull(og_sapid,'')[SAPID],
+        isnull(og_address,'')[address] 
 		from orgs order by og_name");
 
 }

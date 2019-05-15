@@ -106,6 +106,8 @@ void Page_Load(Object sender, EventArgs e)
 
 			// Fill in this form
 			og_name.Value = (string) dr["og_name"];
+		    og_sapid.Value = (string) dr["og_sapid"];
+		    og_address.Value = (string) dr["og_address"];
 			og_domain.Value = (string) dr["og_domain2"];
 			og_active.Checked = Convert.ToBoolean((int)dr["og_active"]);
 			non_admins_can_use.Checked = Convert.ToBoolean((int)dr["og_non_admins_can_use"]);
@@ -199,6 +201,8 @@ void on_update ()
 insert into orgs
 	(og_name,
 	og_domain,
+    og_sapid,
+    og.address,
 	og_active,
 	og_non_admins_can_use,
 	og_external_user,
@@ -229,6 +233,8 @@ insert into orgs
 	values (
 	N'$name', 
 	N'$domain',
+    N'$sapid',
+    N'$address',
 	$active,
 	$non_admins_can_use,
 	$external_user,
@@ -264,6 +270,8 @@ insert into orgs
 update orgs set
 	og_name = N'$name',
 	og_domain = N'$domain',
+    og_sapid = N'$sapid',
+    og_address = N'$address',
 	og_active = $active,
 	og_non_admins_can_use = $non_admins_can_use,
 	og_external_user = $external_user,
@@ -298,6 +306,8 @@ update orgs set
 
 		sql = sql.Replace("$name", og_name.Value.Replace("'","''"));
 		sql = sql.Replace("$domain", og_domain.Value.Replace("'","''"));
+	    sql = sql.Replace("$sapid", og_sapid.Value.Replace("'","''"));
+	    sql = sql.Replace("$address", og_address.Value.Replace("'","''"));
 		sql = sql.Replace("$active", Util.bool_to_string(og_active.Checked));
 		sql = sql.Replace("$non_admins_can_use", Util.bool_to_string(non_admins_can_use.Checked));
 		sql = sql.Replace("$external_user", Util.bool_to_string(external_user.Checked));
@@ -400,10 +410,22 @@ update orgs set
 	</tr>
 	
 	<tr>
-	<td class=lbl>Domain (like, "example.com"):
+	<td class=lbl>Domain (like, "example.com"):</td>
 	<td><input runat="server" type=text class=txt id="og_domain" maxlength=80 size=30></td>
 	<td runat="server" class=err id="domain_err">&nbsp;</td>
 	</tr>
+    
+    <tr>
+    <td class=lbl>SAPID:</td>
+    <td><input runat="server" type=text class=txt id="og_sapid" maxlength=200 size=30></td>
+    <td runat="server" class=err id="sapid_err">&nbsp;</td>
+    </tr>
+    
+    <tr>
+    <td class=lbl>Address:</td>
+    <td><input runat="server" type=text class=txt id="og_address" maxlength=200 size=30></td>
+    <td runat="server" class=err id="address_err">&nbsp;</td>
+    </tr>
 	
 	<td class=lbl>Active:</td>
 	<td><asp:checkbox runat="server" class=cb id="og_active"/></td>
