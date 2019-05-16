@@ -4,8 +4,8 @@ using BTNETApi.Core.Entities;
 
 namespace BTNETApi.Services.Interface
 {
-    public interface IUserService
+    public interface IProjectService
     {
-        Task<User> Authenticate(string username, string password);
+        Task<List<Project>> GetAll();
     }
 }

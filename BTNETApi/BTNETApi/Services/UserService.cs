@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using BTNETApi.Core;
 using BTNETApi.Core.Entities;
@@ -19,12 +18,6 @@ namespace BTNETApi.Services
         {
             var user = await _dbContext.Users.Where(o => o.Username == username && o.Password == password).FirstOrDefaultAsync();
             return user;
-        }
-
-        public async Task<List<User>> GetAll()
-        {
-            var users = await _dbContext.Users.ToListAsync();
-            return users;
         }
     }
 }

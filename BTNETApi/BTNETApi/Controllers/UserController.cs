@@ -28,11 +28,5 @@ namespace BTNETApi.Controllers
 
             return Ok(user);
         }
-        [HttpGet("getall")]
-        public async Task<IActionResult> GetAll()
-        {
-            var users = await _userService.GetAll();
-            return Ok(users);
-        }
     }
 }

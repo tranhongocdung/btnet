@@ -1,0 +1,12 @@
+* Add SAPID & Address fields:
+- Run the script in this folder to add fields to database
+- Run the website as normal to see the change
+
+* Create a web API method to return all the projects in the db
+- I created a new project called BTNETApi inside the root folder, using .NET Core 2.2, Entity Framework
+- All the projects should be returned after the user is authorized then I implemented the Basic Authentication (for fast, in fact we can use JWT for more secure in real product)
+- Update the Db connection string in appsettings.json, run the app
+- Using the Postman (or whatever to call the api, add header Basic Authentication with any account to retrieve the data)
+- Url to get projects: http://localhost:4000/api/project/getall
+
+==== Cheer ====
