@@ -106,8 +106,8 @@ void Page_Load(Object sender, EventArgs e)
 
 			// Fill in this form
 			og_name.Value = (string) dr["og_name"];
-		    og_sapid.Value = (string) dr["og_sapid"];
-		    og_address.Value = (string) dr["og_address"];
+		    og_sapid.Value = dr["og_sapid"] is DBNull ? "" : (string) dr["og_sapid"]; // TEST: Set value for SAPID
+		    og_address.Value = dr["og_address"] is DBNull ? "" : (string) dr["og_address"]; // TEST: Set value for Address
 			og_domain.Value = (string) dr["og_domain2"];
 			og_active.Checked = Convert.ToBoolean((int)dr["og_active"]);
 			non_admins_can_use.Checked = Convert.ToBoolean((int)dr["og_non_admins_can_use"]);
@@ -197,11 +197,12 @@ void on_update ()
 	{
 		if (id == 0)  // insert new
 		{
+                // TEST: Update the SQL to insert SAPID & Address
 			sql = @"
 insert into orgs
 	(og_name,
 	og_domain,
-    og_sapid,
+    og_sapid, 
     og.address,
 	og_active,
 	og_non_admins_can_use,
@@ -265,7 +266,7 @@ insert into orgs
 		}
 		else // edit existing
 		{
-
+             // TEST: Update the SQL to update SAPID & Address
 			sql = @"
 update orgs set
 	og_name = N'$name',
@@ -414,7 +415,7 @@ update orgs set
 	<td><input runat="server" type=text class=txt id="og_domain" maxlength=80 size=30></td>
 	<td runat="server" class=err id="domain_err">&nbsp;</td>
 	</tr>
-    
+    <!-- TEST: Add textboxes for SAPID and Address -->
     <tr>
     <td class=lbl>SAPID:</td>
     <td><input runat="server" type=text class=txt id="og_sapid" maxlength=200 size=30></td>
